@@ -63,13 +63,13 @@
           <% if (order.orderStatus === 'IN TRANSIT') { %>
           <p><strong>Driver:</strong> <%= order.deliveredBy %></p>
           <p>
-            <strong>Driver's License Plate:</strong>
+            <strong>Driver's License Plate:</strong> <%= order.lisencePlate %>
           </p>
           <% } %> <% if (order.orderStatus === 'DELIVERED') { %>
           <p>
             <strong>Delivered Photo:</strong>
           </p>
-          <img src="path(tobedone)" alt="Delivered" />
+          <img src="<%= order.proof%>" />
           <% } %> <% } %>
         </li>
         <% } %>

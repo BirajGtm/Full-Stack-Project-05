@@ -7,8 +7,8 @@ const ordersSchema = new mongoose.Schema({
   orderTime: Date,
   orderStatus: String,
   deliveredBy: String,
-  proof: String,
   lisencePlate: String,
+  proof: String,
 });
 
 module.exports = mongoose.model("order_collection", ordersSchema);

@@ -39,12 +39,13 @@
 
           <% if (order.orderStatus === 'DELIVERED') { %>
           <p><strong>Driver:</strong> <%= order.deliveredBy %></p>
-          <p><strong>Driver's License Plate:</strong></p>
+          <p>
+            <strong>Driver's License Plate:</strong> <%= order.license_plate %>
+          </p>
           <p>
             <strong>Delivered Photo:</strong>
           </p>
-          <img src="path(tobedone)" alt="Delivered" />
-
+          <img src="<%= order.proof%>" />
           <% } %>
         </li>
         <% } %>
