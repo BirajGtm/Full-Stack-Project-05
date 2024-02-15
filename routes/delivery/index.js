@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Driver = require("../../models/driver");
-const Orders = require("../../models");
+const Orders = require("../../models/order");
 const bcrypt = require("bcrypt");
 const passport = require("passport");
 const path = require("path");
@@ -81,7 +81,8 @@ router.post("/register", async (req, res) => {
     let driver = await Driver.findOne({ username: newDriver.username });
 
     if (driver) {
-      return res.status(400).json("Username already exists");
+      req.flash("error", "This username already exists !");
+      return res.redirect("/delivery/register");
     }
 
     driver = await newDriver.save();
@@ -110,6 +111,7 @@ router.get("/open-deliveries/accept/:id", auth, async (req, res) => {
     const accept = await Orders.findByIdAndUpdate(req.params.id, {
       orderStatus: "IN TRANSIT",
       deliveredBy: req.user.name,
+      lisencePlate: req.user.license_plate,
     });
     return res.render("delivery/delivery", { user: req.user, order: accept });
   } catch (error) {

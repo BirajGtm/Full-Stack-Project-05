@@ -1,17 +1,14 @@
 const mongoose = require("mongoose");
 
-// Define a schema
-const Schema = mongoose.Schema;
-
-const ordersSchema = new Schema({
+const ordersSchema = new mongoose.Schema({
   custName: String,
   deliveryAddr: String,
   itemsOrdered: Array,
   orderTime: Date,
   orderStatus: String,
   deliveredBy: String,
+  proof: String,
+  lisencePlate: String,
 });
 
-const Order = mongoose.model("order_collection", ordersSchema);
-
-module.exports = Order;
+module.exports = mongoose.model("order_collection", ordersSchema);

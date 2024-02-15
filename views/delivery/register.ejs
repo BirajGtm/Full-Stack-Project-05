@@ -88,6 +88,12 @@
   <body>
     <main>
       <h1>Delivery Personnel Registration</h1>
+      <% if (messages.error) { %>
+        <div class="error"><%= messages.error %></div>
+        <% } %>
+        <% if (messages.success) { %>
+        <div class="success"><%= messages.success %></div>
+        <% } %>
 
       <div class="wrapper">
         <form action="/delivery/register" method="post">
@@ -131,11 +137,11 @@
           </div>
 
           <div class="form-group">
-            <label for="lisence_plate">Lisence Plate: </label>
+            <label for="license_plate">Lisence Plate: </label>
             <input
               type="text"
-              id="lisence_plate"
-              name="lisence_plate"
+              id="license_plate"
+              name="license_plate"
               required
             />
           </div>
