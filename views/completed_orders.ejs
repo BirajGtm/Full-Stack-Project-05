@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Completed Orders</title>
+    <script
+      src="https://kit.fontawesome.com/27e9e6daeb.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="/completed.css" type="text/css" />
+  </head>
+  <body>
+    <header>
+      <h1>~ Bhansa Ghar ~</h1>
+    </header>
+
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Order Status</a>
+      <a href="#">About Us</a>
+      <a href="#">Careers</a>
+    </nav>
+    <h2 class="title">Completed Orders</h2>
+    <div class="order-status">
+      <% if (orders.length === 0) { %>
+      <p>There are no completed orders yet!</p>
+      <% } else { %>
+      <ul>
+        <% for (let order of orders) { %>
+        <li>
+          <h2><%= order.custName %></h2>
+          <p><strong>Address:</strong> <%= order.deliveryAddr %></p>
+          <p><strong>Order Time:</strong> <%= order.orderTime %></p>
+
+          <p>
+            <strong>Order Total:</strong> <% let total = 0; for (let item of
+            order.itemsOrdered) { total += item.price; } %> $<%= total %>
+          </p>
+          <p><strong>Order Status:</strong> <%= order.orderStatus %></p>
+
+          <% if (order.orderStatus === 'DELIVERED') { %>
+          <p><strong>Driver:</strong> <%= order.deliveredBy %></p>
+          <p><strong>Driver's License Plate:</strong></p>
+          <p>
+            <strong>Delivered Photo:</strong>
+          </p>
+          <img src="path(tobedone)" alt="Delivered" />
+
+          <% } %>
+        </li>
+        <% } %>
+      </ul>
+      <% } %>
+      <a href="/manage"><button>Back to Manage Orders</button></a>
+    </div>
+    <footer>
+      <div class="social-icons">
+        <div>
+          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+        </div>
+        <div>
+          <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+        <div>
+          <a href="#"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="copyright">&copy; Bhansa Ghar Restaurant</div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Restaurant Management</title>
+    <script
+      src="https://kit.fontawesome.com/27e9e6daeb.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="/styles.css" type="text/css" />
+  </head>
+  <body>
+    <header>
+      <h1>~ Bhansa Ghar ~</h1>
+    </header>
+
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Order Status</a>
+      <a href="#">About Us</a>
+      <a href="#">Careers</a>
+    </nav>
+    <h2 class="title">Order Status</h2>
+    <div class="order-box">
+      <form action="/manage/search" method="post">
+        <input
+          type="text"
+          name="custName"
+          placeholder="Search by customer name"
+        />
+        <button type="submit">Search</button>
+      </form>
+      <a href="/manage/completed_orders/">
+        <button>Delivered Orders</button>
+      </a>
+    </div>
+
+    <div class="order-status">
+      <ul>
+        <% if (orders.length === 0) { %>
+        <li><p>There are no orders yet!</p></li>
+        <% } else { %> <% for (let order of orders) { %>
+        <li>
+          <h2><%= order.custName %></h2>
+          <p><strong>Address:</strong> <%= order.deliveryAddr %></p>
+          <p><strong>Order Time:</strong> <%= order.orderTime %></p>
+
+          <p>
+            <strong>Order Total:</strong> <% let total = 0; for (let item of
+            order.itemsOrdered) { total += item.price; }%> $<%= total %>
+          </p>
+          <p><strong>Order Status:</strong> <%= order.orderStatus %></p>
+
+          <form action="/manage/update_status" method="post">
+            <input type="hidden" value="<%= order._id %>" name="order_id" />
+            <label for="orderStatus">Update Status:</label>
+            <select name="orderStatus">
+              <option value="READY FOR DELIVERY">Ready For Delivery</option>
+              <option value="IN TRANSIT">In Transit</option>
+              <option value="DELIVERED">Delivered</option>
+            </select>
+            <button type="submit">Update</button>
+          </form>
+          <% if (order.orderStatus === 'IN TRANSIT') { %>
+          <p><strong>Driver:</strong> <%= order.deliveredBy %></p>
+          <p>
+            <strong>Driver's License Plate:</strong>
+          </p>
+          <% } %> <% if (order.orderStatus === 'DELIVERED') { %>
+          <p>
+            <strong>Delivered Photo:</strong>
+          </p>
+          <img src="path(tobedone)" alt="Delivered" />
+          <% } %> <% } %>
+        </li>
+        <% } %>
+      </ul>
+    </div>
+    <footer>
+      <div class="social-icons">
+        <div>
+          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+        </div>
+        <div>
+          <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+        <div>
+          <a href="#"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+      <div>&copy; Bhansa Ghar Restaurant</div>
+    </footer>
+  </body>
+</html>
