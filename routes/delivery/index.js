@@ -106,14 +106,14 @@ router.get("/open-deliveries/accept/:id", auth, async (req, res) => {
         "error",
         "You already have ongoing delivery. Please deliver the order first"
       );
-      return res.redirect("/delivery");
+      return res.redirect("/delivery/ongoing-delivery");
     }
     const accept = await Orders.findByIdAndUpdate(req.params.id, {
       orderStatus: "IN TRANSIT",
       deliveredBy: req.user.name,
       lisencePlate: req.user.license_plate,
     });
-    return res.render("delivery/delivery", { user: req.user, order: accept });
+    return res.redirect('');
   } catch (error) {
     console.log(error);
   }
