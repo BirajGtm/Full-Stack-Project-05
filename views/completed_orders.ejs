@@ -14,12 +14,12 @@
     </header>
 
     <nav>
-      <a href="#">Home</a>
-      <a href="#">Order Status</a>
-      <a href="#">About Us</a>
-      <a href="#">Careers</a>
+      <a href="/">Home</a>
+      <a href="/#order-status">Order Status</a>
+      <a href="/manage">Manage Orders</a>
+      <a href="/delivery">Delivery</a>
     </nav>
-    <h2 class="title">Completed Orders</h2>
+    <h2 class="title">Delivered Orders</h2>
     <div class="order-status">
       <% if (orders.length === 0) { %>
       <p>There are no completed orders yet!</p>
@@ -38,14 +38,14 @@
           <p><strong>Order Status:</strong> <%= order.orderStatus %></p>
 
           <% if (order.orderStatus === 'DELIVERED') { %>
-          <p><strong>Driver:</strong> <%= order.deliveredBy %></p>
+          <p><strong>Delivered By:</strong> <%= order.deliveredBy %></p>
           <p>
             <strong>Driver's License Plate:</strong> <%= order.lisencePlate %>
           </p>
           <p>
             <strong>Delivered Photo:</strong>
           </p>
-          <img src="<%= order.proof%>" />
+          <img src="/<%= order.proof%>" />
           <% } %>
         </li>
         <% } %>

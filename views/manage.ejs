@@ -14,12 +14,12 @@
     </header>
 
     <nav>
-      <a href="#">Home</a>
-      <a href="#">Order Status</a>
-      <a href="#">About Us</a>
-      <a href="#">Careers</a>
+      <a href="/">Home</a>
+      <a href="/#check-order">Order Status</a>
+      <a href="#">Manage Orders</a>
+      <a href="/delivery">Delivery</a>
     </nav>
-    <h2 class="title">Order Status</h2>
+    <h2 class="title">Manage Orders</h2>
     <div class="order-box">
       <form action="/manage/search" method="post">
         <input
@@ -61,7 +61,7 @@
             <button type="submit">Update</button>
           </form>
           <% if (order.orderStatus === 'IN TRANSIT') { %>
-          <p><strong>Driver:</strong> <%= order.deliveredBy %></p>
+          <p><strong>Delivered By:</strong> <%= order.deliveredBy %></p>
           <p>
             <strong>Driver's License Plate:</strong> <%= order.lisencePlate %>
           </p>
@@ -69,7 +69,7 @@
           <p>
             <strong>Delivered Photo:</strong>
           </p>
-          <img src="<%= order.proof%>" />
+          <img src="/<%= order.proof%>" />
           <% } %> <% } %>
         </li>
         <% } %>
