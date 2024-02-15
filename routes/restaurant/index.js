@@ -13,7 +13,7 @@ const menuItemsSchema = new Schema({
 });
 
 // Compile model from schema
-const orderData = require("../../models");
+const orderData = require("../../models/order");
 const menuItem = mongoose.model("menu_item_collection", menuItemsSchema);
 
 // Create home route
