@@ -38,7 +38,6 @@
         text-align: left;
         display: flex;
         width: 50vw;
-        background-color: #f4d6cc;
       }
       form {
         display: flex;
@@ -83,17 +82,32 @@
         border-radius: 10px;
         background-color: #f4d6cc;
       }
+      .error {
+        width: 100%;
+        height: 20px;
+        color: #64170f94;
+        border: 1px solid #64170f94;
+        background-color: #f4d6cc;
+        border-radius: 10px;
+      }
+      .success {
+        width: 100%;
+        height: 20px;
+        color: #0f641994;
+        border: 1px solid #0f641994;
+        background-color: #ccf4ce;
+        border-radius: 10px;
+      }
     </style>
   </head>
   <body>
     <main>
       <h1>Delivery Personnel Registration</h1>
       <% if (messages.error) { %>
-        <div class="error"><%= messages.error %></div>
-        <% } %>
-        <% if (messages.success) { %>
-        <div class="success"><%= messages.success %></div>
-        <% } %>
+      <div class="error"><%= messages.error %></div>
+      <% } %> <% if (messages.success) { %>
+      <div class="success"><%= messages.success %></div>
+      <% } %>
 
       <div class="wrapper">
         <form action="/delivery/register" method="post">
@@ -147,6 +161,8 @@
           </div>
 
           <button type="submit">Register</button>
+          <h3>Already a user ? Login here.</h3>
+          <a href="/delivery/login">Login</a>
         </form>
       </div>
     </main>

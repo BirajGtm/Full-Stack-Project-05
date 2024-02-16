@@ -113,7 +113,7 @@ router.get("/open-deliveries/accept/:id", auth, async (req, res) => {
       deliveredBy: req.user.name,
       lisencePlate: req.user.license_plate,
     });
-    return res.redirect('');
+    return res.redirect("/delivery/ongoing-delivery");
   } catch (error) {
     console.log(error);
   }
@@ -166,13 +166,8 @@ router.get("/my-deliveries", auth, async (req, res) => {
   }
 });
 
-// router.get("/open-deliveries/accept/:id", auth, async (req, res) => {
-//   try {
-//     const order = Orders.findById(req.params.id);
-//   } catch (error) {
-//     console.log(error);
-//   }
-//   return res.render("/delivery", { order });
-// });
+router.get("/logout", auth, (req, res) => {
+  return req.logOut(() => res.redirect("/delivery/login"));
+});
 
 module.exports = router;
