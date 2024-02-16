@@ -88,14 +88,32 @@
         padding: 10px;
         margin: 0, 15px;
       }
+      .error {
+        width: 100%;
+        height: 20px;
+        color: #64170f94;
+        border: 1px solid #64170f94;
+        background-color: #f4d6cc;
+        border-radius: 10px;
+      }
+      .success {
+        width: 100%;
+        height: 20px;
+        color: #0f641994;
+        border: 1px solid #0f641994;
+        background-color: #ccf4ce;
+        border-radius: 10px;
+      }
+      td {
+        padding: 5px 2px;
+      }
     </style>
   </head>
   <body>
     <nav>
       <ul type="none" style="display: flex; justify-content: end">
         <li><a href="/">Home</a></li>
-        <li><a href="/delivery/login">Login</a></li>
-        <li><a href="/delivery/register">Register</a></li>
+        <li><a href="/delivery/logout">Log Out</a></li>
       </ul>
     </nav>
     <main>
@@ -132,7 +150,9 @@
 
           <% if (orders.length === 0) { %>
           <tr>
-            Sorry no open deliveries right now. Please Check back later!
+            <td>
+              Sorry no open deliveries right now. Please Check back later!
+            </td>
           </tr>
           <% } else { %> <% for(const order of orders){ %>
           <tr>
