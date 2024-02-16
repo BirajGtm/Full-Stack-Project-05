@@ -5,6 +5,7 @@ const Orders = require("../../models/order");
 const bcrypt = require("bcrypt");
 const passport = require("passport");
 const path = require("path");
+const fs = require("fs");
 
 const auth = require("../../middlewares/authenticator");
 
@@ -13,10 +14,10 @@ const multer = require("multer");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "public");
+    cb(null, path.join(__dirname + "/temp/"));
   },
   filename: (req, file, cb) => {
-    cb(null, file.fieldname + "-" + Date.now() + ".png");
+    cb(null, file.fieldname + "-" + Date.now());
   },
 });
 
@@ -123,10 +124,14 @@ router.post(
   auth,
   upload.single("proof"),
   async (req, res) => {
+    const imgPath = path.join(__dirname + "/temp/" + req.file.filename);
+    const imageBuffer = fs.readFileSync(imgPath);
+
+    const file_64 = Buffer.from(imageBuffer).toString("base64");
     try {
       const ongoing = await Orders.findByIdAndUpdate(req.params.id, {
         orderStatus: "DELIVERED",
-        proof: req.file.filename,
+        proof: file_64,
       });
       req.flash("success", "Order Delivered Successfully!");
       return res.redirect("/delivery");

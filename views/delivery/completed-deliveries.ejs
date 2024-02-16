@@ -120,7 +120,6 @@
       <ul type="none" style="display: flex; justify-content: end">
         <li><a href="/">Home</a></li>
         <li><a href="/delivery/logout">Log Out</a></li>
-        
       </ul>
     </nav>
     <main>
@@ -167,7 +166,7 @@
             <td><%= new Date(order.orderTime).toLocaleString() %></td>
             <td>
               <img
-                src="<%= order.proof %>"
+                src="data:image/jpeg;base64,<%= order.proof %>"
                 alt="proof"
                 height="50px"
                 width="50px"
