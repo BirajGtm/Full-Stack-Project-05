@@ -7,7 +7,7 @@ router.get("/", async (req, res) => {
   try {
     const orders = await Order.find();
     console.log(orders);
-    return res.render("manage", { orders });
+    return res.render("order/manage", { orders });
   } catch (err) {
     console.error(err);
     return res.status(500).send("An error occurred while fetching orders.");
@@ -16,7 +16,7 @@ router.get("/", async (req, res) => {
 
 router.post("/search", async (req, res) => {
   const orders = await Order.find({ custName: req.body.custName });
-  return res.render("manage", { orders });
+  return res.render("order/manage", { orders });
 });
 
 router.post("/update_status", async (req, res) => {
@@ -28,7 +28,7 @@ router.post("/update_status", async (req, res) => {
 
 router.get("/completed_orders", async (req, res) => {
   const orders = await Order.find({ orderStatus: "DELIVERED" });
-  return res.render("completed_orders", { orders });
+  return res.render("order/completed_orders", { orders });
 });
 
 module.exports = router;
