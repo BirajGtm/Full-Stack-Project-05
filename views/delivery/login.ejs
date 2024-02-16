@@ -93,13 +93,14 @@
         <% } %>
       <h1>Delivery Personnel Login</h1>
 
-      <div>
+      <div class="main-wrapper">
         <form action="/delivery/login" method="post">
           <label for="username">Username: </label>
           <input type="text" id="username" name="username" required /><br />
           <label for="password">Password: </label>
           <input type="password" id="password" name="password" required /><br />
           <button type="submit">Login</button>
+          <h3>Not registered yet ? Sign up here.</h3><a href="/delivery/register" class="button">Sign Up</a>
         </form>
       </div>
      

@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Open Deliveries</title>
+    <link rel="stylesheet" href="styles.css" />
     <style>
       body {
         width: 100vw;
@@ -17,9 +18,15 @@
         flex: 1;
         height: 7.5vh;
         background-color: #ff6400;
+        display: flex;
+        flex-direction: row;
         color: #ffffff;
         position: sticky;
         top: 0;
+      }
+      li {
+        padding: 10px;
+        margin: 0, 15px;
       }
       div {
       }
@@ -75,19 +82,36 @@
         height: 40px;
         width: 40px;
       }
+      table {
+        width: 85%;
+        padding: 2%;
+        margin: 5%;
+        border: 1px solid #ff6400;
+        border-radius: 10px;
+        box-shadow: 5px 5px 5px #ff6400;
+      }
       li {
         padding: 10px;
         margin: 0, 15px;
       }
-      h2 {
-        padding: 0;
-      }
-      .boc {
-        background-color: #ffd7bc;
-        border: #ff6400;
+      .error {
+        width: 100%;
+        height: 20px;
+        color: #64170f94;
+        border: 1px solid #64170f94;
+        background-color: #f4d6cc;
         border-radius: 10px;
-        box-shadow: 5px px 5px #ff6400;
-        padding: 3%;
+      }
+      .success {
+        width: 100%;
+        height: 20px;
+        color: #0f641994;
+        border: 1px solid #0f641994;
+        background-color: #ccf4ce;
+        border-radius: 10px;
+      }
+      td {
+        padding: 5px 2px;
       }
     </style>
   </head>
@@ -95,59 +119,69 @@
     <nav>
       <ul type="none" style="display: flex; justify-content: end">
         <li><a href="/">Home</a></li>
-        <li><a href="/delivery/login">Login</a></li>
-        <li><a href="/delivery/register">Register</a></li>
-      </ul>
+        <li><a href="/delivery/logout">Log Out</a></li>
     </nav>
     <main>
-      <div class="sidebar">
-        <h2>Hello <%= user.name %></h2>
-        <a href="/delivery"
-          ><img src="open-order.png" alt="Open Order" />
-          <p>Open Orders</p></a
-        >
-        <a class="active" href="delivery/ongoing-delivery">
-          <img src="motorbike.png" alt="Ongoing Delivery" />
-          <p>Ongoing Delivery</p></a
-        >
-
-        <a href="my-deliveries"
-          ><img src="delivery.png" alt="My Deliveries" />
-          <p>My Deliveries</p></a
-        >
-      </div>
-      <div class="main-wrapper">
-        <% if (messages.error) { %>
-        <div class="error"><%= messages.error %></div>
-        <% } %> <% if (messages.success) { %>
-        <div class="success"><%= messages.success %></div>
-        <% } %> <% if (order) { %>
-
-        <div class="boc">
-          <ul type="" none>
-            <li><h3>Customer Name: <%= order.custName %></h3></li>
-            <li><h3>Delivery Address: <%= order.deliveryAddr %></h3></li>
-            <li>
-              Order Date and Time: <%= new
-              Date(order.orderTime).toLocaleString() %>
-            </li>
-          </ul>
-
-          <h5>Done with your delivery ? Submit delivery Image here:</h5>
-          <form
-            action="/delivery/open-deliveries/deliver/<%= order.id %>"
-            method="post"
-            enctype="multipart/form-data"
+        <div class="sidebar">
+          <h2>Hello <%= user.name %></h2>
+          <a href="/delivery"
+            ><img src="open-order.png" alt="Open Order" />
+            <p>Open Orders</p></a
           >
-            <input type="file" id="myFile" name="proof" />
-            <input type="submit" />
-          </form>
-          <% } else { %>
-          <h2>You do not have any ongoing order !</h2>
-          <% } %>
+          <a class="active" href="/delivery/ongoing-delivery">
+            <img src="motorbike.png" alt="Ongoing Delivery" />
+            <p>Ongoing Delivery</p></a
+          >
+  
+          <a href="my-deliveries"
+            ><img src="delivery.png" alt="My Deliveries" />
+            <p>My Deliveries</p></a
+          >
         </div>
-      </div>
-    </main>
+        <div class="main-wrapper">
+          <% if (messages.error) { %>
+          <div class="error"><%= messages.error %></div>
+          <% } %> <% if (messages.success) { %>
+          <div class="success"><%= messages.success %></div>
+          <% } %> <% if (order) { %>
+  
+          <div class="boc">
+            <ul type="" none>
+              <li><h3>Customer Name: <%= order.custName %></h3></li>
+              <li><h3>Delivery Address: <%= order.deliveryAddr %></h3></li>
+              <li>
+                <h3>
+                  Order Date and Time: <%= new
+                  Date(order.orderTime).toLocaleString() %>
+                </h3>
+              </li>
+            </ul>
+  
+            <h4>Done with your delivery ? Submit delivery Image here:</h4>
+            <form
+              action="/delivery/open-deliveries/deliver/<%= order.id %>"
+              method="post"
+              enctype="multipart/form-data"
+            >
+              <input type="file" id="myFile" name="proof" />
+              <input type="submit" />
+            </form>
+            <% } else { %>
+            <h2>You do not have any ongoing order !</h2>
+            <% } %>
+          </div>
+        </div>
+      </main>
     <footer></footer>
   </body>
 </html>
+
+
+
+
+
+
+
+
+
+

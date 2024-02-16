@@ -30,9 +30,7 @@ const initialize = (passport) => {
   );
   passport.serializeUser((user, done) => done(null, user._id));
   passport.deserializeUser(async (_id, done) => {
-    console.log({ IDDDDDDDDD: _id });
     const user = await Driver.findOne({ _id });
-    console.log({ USERRRRRRRRRRRRRRR: user });
     done(null, user);
   });
 };
