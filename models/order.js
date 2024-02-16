@@ -8,7 +8,7 @@ const ordersSchema = new mongoose.Schema({
   orderStatus: String,
   deliveredBy: String,
   lisencePlate: String,
-  proof: String,
+  proof: Buffer,
 });
 
 module.exports = mongoose.model("order_collection", ordersSchema);
