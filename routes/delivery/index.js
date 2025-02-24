@@ -20,8 +20,8 @@ const storage = multer.diskStorage({
     cb(null, file.fieldname + "-" + Date.now());
   },
 });
-
 const upload = multer({ storage: storage });
+
 
 const initializePassport = require("../../passport-config");
 initializePassport(passport);
@@ -32,9 +32,6 @@ const session = require("express-session");
 router.use(
   flash({
     sessionKeyName: "express-flash-message",
-    // // below are optional property you can pass in to track
-    // onAddFlash: (type, message) => {},
-    // onConsumeFlash: (type, messages) => {},
   })
 );
 router.use(
@@ -49,6 +46,8 @@ router.use(passport.initialize());
 router.use(passport.session());
 router.use(express.static(path.join(__dirname, "../../public")));
 
+//Routes Start from here
+
 router.get("/", auth, async (req, res) => {
   const orders = await Orders.find({
     orderStatus: "READY FOR DELIVERY",
@@ -56,9 +55,11 @@ router.get("/", auth, async (req, res) => {
   return res.render("delivery/open-deliveries", { user: req.user, orders });
 });
 
+//Login
 router.get("/login", (req, res) => {
   return res.render("delivery/login");
 });
+
 router.post(
   "/login",
   passport.authenticate("local", {
@@ -68,6 +69,8 @@ router.post(
   })
 );
 
+
+//Register
 router.get("/register", (req, res) => {
   return res.render("delivery/register");
 });
@@ -95,6 +98,8 @@ router.post("/register", async (req, res) => {
   }
 });
 
+
+//Accept Delivery
 router.get("/open-deliveries/accept/:id", auth, async (req, res) => {
   try {
     const ongoing = await Orders.findOne({
@@ -119,6 +124,8 @@ router.get("/open-deliveries/accept/:id", auth, async (req, res) => {
     console.log(error);
   }
 });
+
+//Deliver with Image
 router.post(
   "/open-deliveries/deliver/:id",
   auth,
@@ -141,6 +148,8 @@ router.post(
   }
 );
 
+
+//ongoing delivery
 router.get("/ongoing-delivery", auth, async (req, res) => {
   try {
     const ongoingOrder = await Orders.findOne({
@@ -156,6 +165,7 @@ router.get("/ongoing-delivery", auth, async (req, res) => {
   }
 });
 
+//my deliveries
 router.get("/my-deliveries", auth, async (req, res) => {
   try {
     const deliveries = await Orders.find({
@@ -171,6 +181,8 @@ router.get("/my-deliveries", auth, async (req, res) => {
   }
 });
 
+
+//logout
 router.get("/logout", auth, (req, res) => {
   return req.logOut(() => res.redirect("/delivery/login"));
 });
