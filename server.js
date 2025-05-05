@@ -16,7 +16,7 @@ app.use(express.static("public"));
 // Connecting to MongoDB
 const mongoose = require("mongoose");
 mongoose.connect(
-  `mongodb+srv://birajgtm:Dcml2CrR2EJSDwr1@madsclass.rgddjin.mongodb.net/?retryWrites=true&w=majority`
+  `mongodb+srv://<db_username>:<db_password>@madsclass.rgddjin.mongodb.net/?retryWrites=true&w=majority&appName=MADSClass`
 );
 const db = mongoose.connection;
 
