@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 
 // Setting up .env
 require("dotenv").config();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 //View Engine Setup
 app.set("view engine", "ejs");
@@ -15,9 +15,10 @@ app.use(express.static("public"));
 
 // Connecting to MongoDB
 const mongoose = require("mongoose");
+const mongoURI = process.env.DATABASE_URL;
+
 mongoose.connect(
-  `mongodb+srv://<db_username>:<db_password>@madsclass.rgddjin.mongodb.net/?retryWrites=true&w=majority&appName=MADSClass`
-);
+  mongoURI);
 const db = mongoose.connection;
 
 db.on("error", (error) => console.error(error));
