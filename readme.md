@@ -19,8 +19,16 @@ This is a **full-stack web application** that simulates a food delivery platform
 - View delivery assignments
 - Update delivery progress
 
-### Admin-side (optional for future scope)
-- Oversee overall system activity
+### Admin-side (restaurant owner)
+- Update Food delivery status
+- Check status of current and old deliveries
+
+---
+
+## 🌐 Live Demo
+
+Check out the live demo here:  
+👉 [https://bhansa-ghar.onrender.com/](https://bhansa-ghar.onrender.com/)
 
 ---
 
